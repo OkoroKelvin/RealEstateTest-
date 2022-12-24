@@ -34,4 +34,6 @@ public class ApartmentRater {
 		}
 		return sumRatings * 1.0 / apartments.size();	
 	}
+
+
 }
