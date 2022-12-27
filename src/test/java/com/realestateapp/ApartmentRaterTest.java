@@ -1,6 +1,7 @@
 package com.realestateapp;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -47,13 +48,19 @@ class ApartmentRaterTest {
         apartments.add(new Apartment(30.0, new BigDecimal(600000.0)));
 
         double expected = 1.0;
-
         // when
         double actual = ApartmentRater.calculateAverageRating(apartments);
-
         // then
         assertEquals(expected, actual);
     }
 
-
+    @Test
+    void should_ThrowExceptionInCalculateAverageRating_When_EmptyApartmentList() {
+        // given
+        List<Apartment> apartments = new ArrayList<>();
+        // when
+        Executable executable = () -> ApartmentRater.calculateAverageRating(apartments);
+        // then
+        assertThrows(RuntimeException.class, executable);
+    }
 }
